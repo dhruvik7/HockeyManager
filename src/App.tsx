@@ -1,15 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React from "react";
+import { observer } from "mobx-react";
+import logo from "./logo.svg";
+import "./App.css";
+import getStore from "./store/store";
+import addTodo from "./store/actions";
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        {getStore().todos}
+        <img
+          src={logo}
+          className="App-logo"
+          alt="logo"
+          onClick={() => {
+            addTodo("hi!");
+          }}
+        />
+        <p> testing code</p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -23,4 +31,4 @@ function App() {
   );
 }
 
-export default App;
+export default observer(App);
